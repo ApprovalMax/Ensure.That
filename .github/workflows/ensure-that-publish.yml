@@ -31,6 +31,11 @@ jobs:
           --output ./build
       # Publish
       - name: Publish NuGet package
-        run: >-
-          dotnet nuget push "build/*.nupkg"
-          --source https://nuget.pkg.github.com/ApprovalMax/index.json
+        run: |
+          dotnet nuget add source https://nuget.pkg.github.com/ApprovalMax/index.json \
+            --name github \
+            --username USERNAME \
+            --password ${{secrets.GITHUB_TOKEN}} \
+            --store-password-in-clear-text
+          dotnet nuget push "build/*.nupkg" \
+            --source https://nuget.pkg.github.com/ApprovalMax/index.json
