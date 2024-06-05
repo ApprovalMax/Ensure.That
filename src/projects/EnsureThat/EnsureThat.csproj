@@ -1,12 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net4.6.2;netcoreapp3.1;net6.0</TargetFrameworks>
-    <Title>Ensure.That</Title>
-    <PackageId>Ensure.That</PackageId>
+    <TargetFramework>net8.0</TargetFramework>
+    <PackageId>ApprovalMax.Ensure.That</PackageId>
+    <PackageVersion>0.0.0.101</PackageVersion>
+    <AssemblyName>ApprovalMax.Ensure.That</AssemblyName>
+    <Title>ApprovalMax.Ensure.That</Title>
     <PackageTags>ensure-that ensure that argument validation guard clause contracts</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <AssemblyName>Ensure.That</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -17,7 +18,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.33.0.40503">
+    <PackageReference Include="SonarAnalyzer.CSharp">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
