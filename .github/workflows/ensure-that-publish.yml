@@ -1,0 +1,36 @@
+name: '[qbooks-api-client] Deploy to NuGet'
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - src/**
+  workflow_dispatch:
+concurrency: '${{github.workflow}}-${{github.ref}}'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: src
+    steps:
+      # Environment setup
+      - uses: actions/checkout@v2
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.0.x
+      # Build
+      - name: Build NuGet package
+        run: >-
+          dotnet pack ./Ensure.That/src/projects/EnsureThat/EnsureThat.csproj
+          "-p:Platform=Any CPU"
+          -p:RepositoryUrl=https://github.com/ApprovalMax/approvalmax-product
+          -p:Company=ApprovalMax
+          -p:Authors=ApprovalMax
+          --output ./build
+      # Publish
+      - name: Publish NuGet package
+        run: >-
+          dotnet nuget push "build/*.nupkg"
+          --source https://nuget.pkg.github.com/ApprovalMax/index.json
