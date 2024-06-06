@@ -2,16 +2,16 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BenchmarkDotNet" Version="0.12.1" />
+    <PackageReference Include="BenchmarkDotNet"/>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\projects\EnsureThat\EnsureThat.csproj" />
+    <ProjectReference Include="..\..\projects\EnsureThat\EnsureThat.csproj"/>
   </ItemGroup>
 
 </Project>
