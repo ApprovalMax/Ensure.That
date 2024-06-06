@@ -1,7 +1,7 @@
 <Project>
   <PropertyGroup>
-    <Product>Ensure.That</Product>
-    <Version>0.0.0</Version>
+    <Product>ApprovalMax.Ensure.That</Product>
+    <Version>0.0.1</Version>
     <Description>Argument validation made simple and unified. It ensures arguments conforms to simple validation rules and provides an uniformed exception throwing strategy if arguments are invalid.</Description>
     <Company>danielwertheim</Company>
     <Authors>danielwertheim</Authors>
@@ -10,10 +10,5 @@
     <RepositoryUrl>https://github.com/danielwertheim/ensure.that</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <LangVersion>latest</LangVersion>
-  </PropertyGroup>
-
-  <PropertyGroup Label="Code Analysis">
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <AnalysisLevel>latest-recommended</AnalysisLevel>
   </PropertyGroup>
 </Project>
