@@ -1,11 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <PackageVersion>0.0.0.104</PackageVersion>
     <PackageId>ApprovalMax.Ensure.That</PackageId>
-    <PackageVersion>0.0.0.103</PackageVersion>
     <AssemblyName>ApprovalMax.Ensure.That</AssemblyName>
+    <RootNamespace>Ensure.That</RootNamespace>
     <Title>ApprovalMax.Ensure.That</Title>
+    <LangVersion>latest</LangVersion>
+    <TargetFrameworks>net8.0;netstandard2.1</TargetFrameworks>
     <PackageTags>ensure-that ensure that argument validation guard clause contracts</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
