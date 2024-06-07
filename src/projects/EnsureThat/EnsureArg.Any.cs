@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using EnsureThat.Annotations;
 using JetBrains.Annotations;
 
@@ -22,12 +23,12 @@ namespace EnsureThat
         /// <remarks>If you know you are dealing with e.g. a struct, the <see cref="IsNotNull{T}(T?, string, OptsFn)"/> overload is more performant.</remarks>
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public static T HasValue<T>([NoEnumeration, ValidatedNotNull, NotNull] T value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public static T HasValue<T>([NoEnumeration, ValidatedNotNull, NotNull] T value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null)
             => Ensure.Any.HasValue(value, paramName, optsFn);
-        
+
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public static T IsNotNull<T>([NoEnumeration, ValidatedNotNull, NotNull] T value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : class
+        public static T IsNotNull<T>([NoEnumeration, ValidatedNotNull, NotNull] T value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null) where T : class
             => Ensure.Any.IsNotNull(value, paramName, optsFn);
     }
 }

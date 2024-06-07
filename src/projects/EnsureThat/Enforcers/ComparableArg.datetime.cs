@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 
 namespace EnsureThat.Enforcers
 {
     public sealed partial class ComparableArg
     {
-        public DateTime Is(DateTime value, DateTime expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public DateTime Is(DateTime value, DateTime expected, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null)
         {
             if (value != expected)
                 throw Ensure.ExceptionFactory.ArgumentException(
@@ -14,7 +15,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public DateTime IsNot(DateTime value, DateTime expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public DateTime IsNot(DateTime value, DateTime expected, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null)
         {
             if (value == expected)
                 throw Ensure.ExceptionFactory.ArgumentException(
@@ -23,7 +24,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public DateTime IsLt(DateTime value, DateTime limit, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public DateTime IsLt(DateTime value, DateTime limit, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null)
         {
             if (value >= limit)
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
@@ -32,7 +33,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public DateTime IsLte(DateTime value, DateTime limit, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public DateTime IsLte(DateTime value, DateTime limit, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null)
         {
             if (value > limit)
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
@@ -41,7 +42,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public DateTime IsGt(DateTime value, DateTime limit, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public DateTime IsGt(DateTime value, DateTime limit, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null)
         {
             if (value <= limit)
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
@@ -50,7 +51,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public DateTime IsGte(DateTime value, DateTime limit, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public DateTime IsGte(DateTime value, DateTime limit, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null)
         {
             if (value < limit)
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
@@ -59,7 +60,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public DateTime IsInRange(DateTime value, DateTime min, DateTime max, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public DateTime IsInRange(DateTime value, DateTime min, DateTime max, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null)
         {
             if (value < min)
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(

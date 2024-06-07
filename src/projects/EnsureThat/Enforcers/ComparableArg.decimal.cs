@@ -1,10 +1,11 @@
-﻿using JetBrains.Annotations;
+﻿using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
 
 namespace EnsureThat.Enforcers
 {
     public sealed partial class ComparableArg
     {
-        public decimal Is(decimal value, decimal expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public decimal Is(decimal value, decimal expected, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null)
         {
             if (value != expected)
                 throw Ensure.ExceptionFactory.ArgumentException(
@@ -13,7 +14,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public decimal IsNot(decimal value, decimal expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public decimal IsNot(decimal value, decimal expected, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null)
         {
             if (value == expected)
                 throw Ensure.ExceptionFactory.ArgumentException(
@@ -22,7 +23,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public decimal IsLt(decimal value, decimal limit, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public decimal IsLt(decimal value, decimal limit, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null)
         {
             if (value >= limit)
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
@@ -31,7 +32,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public decimal IsLte(decimal value, decimal limit, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public decimal IsLte(decimal value, decimal limit, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null)
         {
             if (value > limit)
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
@@ -40,7 +41,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public decimal IsGt(decimal value, decimal limit, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public decimal IsGt(decimal value, decimal limit, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null)
         {
             if (value <= limit)
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
@@ -49,7 +50,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public decimal IsGte(decimal value, decimal limit, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public decimal IsGte(decimal value, decimal limit, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null)
         {
             if (value < limit)
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
@@ -58,7 +59,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public decimal IsInRange(decimal value, decimal min, decimal max, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public decimal IsInRange(decimal value, decimal min, decimal max, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null)
         {
             if (value < min)
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(

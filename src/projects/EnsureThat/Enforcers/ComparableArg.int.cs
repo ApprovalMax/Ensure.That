@@ -1,10 +1,11 @@
-﻿using JetBrains.Annotations;
+﻿using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
 
 namespace EnsureThat.Enforcers
 {
     public sealed partial class ComparableArg
     {
-        public int Is(int value, int expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public int Is(int value, int expected, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null)
         {
             if (value != expected)
                 throw Ensure.ExceptionFactory.ArgumentException(
@@ -13,7 +14,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public int IsNot(int value, int expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public int IsNot(int value, int expected, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null)
         {
             if (value == expected)
                 throw Ensure.ExceptionFactory.ArgumentException(
@@ -22,7 +23,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public int IsLt(int value, int limit, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public int IsLt(int value, int limit, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null)
         {
             if (value >= limit)
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
@@ -31,7 +32,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public int IsLte(int value, int limit, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public int IsLte(int value, int limit, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null)
         {
             if (value > limit)
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
@@ -40,7 +41,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public int IsGt(int value, int limit, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public int IsGt(int value, int limit, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null)
         {
             if (value <= limit)
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
@@ -49,7 +50,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public int IsGte(int value, int limit, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public int IsGte(int value, int limit, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null)
         {
             if (value < limit)
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
@@ -58,7 +59,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public int IsInRange(int value, int min, int max, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public int IsInRange(int value, int min, int max, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null)
         {
             if (value < min)
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
