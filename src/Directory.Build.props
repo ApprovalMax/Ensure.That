@@ -1,7 +1,7 @@
 <Project>
   <PropertyGroup>
     <Product>ApprovalMax.Ensure.That</Product>
-    <Version>0.0.1</Version>
+    <Version>0.0.2</Version>
     <Description>Argument validation made simple and unified. It ensures arguments conforms to simple validation rules and provides an uniformed exception throwing strategy if arguments are invalid.</Description>
     <Company>danielwertheim</Company>
     <Authors>danielwertheim</Authors>
