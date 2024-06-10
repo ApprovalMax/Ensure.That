@@ -5,6 +5,8 @@ on:
       - master
     paths:
       - src/**
+    paths-ignore:
+      - src/tests/**
   workflow_dispatch:
 concurrency: '${{github.workflow}}-${{github.ref}}'
 jobs:
