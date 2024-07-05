@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using EnsureThat;
 using Xunit;
 
@@ -809,7 +810,839 @@ namespace UnitTests
                 () => Ensure.That(values, ParamName).HasAny(predicate));
         }
 
+        [Fact]
+        public void HasAllNotNullItems_WhenNullICollection_ThrowsArgumentNullException()
+        {
+            var nullCollection = null as ICollection<string>;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.HasAllNotNullItems(nullCollection, ParamName),
+                () => EnsureArg.HasAllNotNullItems(nullCollection, ParamName),
+                () => Ensure.That(nullCollection, ParamName).HasAllNotNullItems());
+        }
+
+        [Fact]
+        public void HasAllNotNullItems_WhenEmptyICollection_ThrowsArgumentException()
+        {
+            ICollection<string> emptyCollection = new Collection<string>();
+
+            AssertIsEmptyCollection(
+                () => Ensure.Collection.HasAllNotNullItems(emptyCollection, ParamName),
+                () => EnsureArg.HasAllNotNullItems(emptyCollection, ParamName),
+                () => Ensure.That(emptyCollection, ParamName).HasAllNotNullItems());
+        }
+
+        [Theory]
+        [ClassData(typeof(WithNullItemsCollection))]
+        public void HasAllNotNullItems_WhenWithNullItemICollection_ThrowsArgumentException(string[] testCollection)
+        {
+            ICollection<string> collectionWithNullItem = new Collection<string>(testCollection);
+
+            AssertHasNullItemsCollection(
+                () => Ensure.Collection.HasAllNotNullItems(collectionWithNullItem, ParamName),
+                () => EnsureArg.HasAllNotNullItems(collectionWithNullItem, ParamName),
+                () => Ensure.That(collectionWithNullItem, ParamName).HasAllNotNullItems());
+        }
+
+        [Theory]
+        [ClassData(typeof(WithoutNullItemsCollection))]
+        public void HasAllNotNullItems_WhenNonWithNullItemICollection_ShouldNotThrow(string[] testCollection)
+        {
+            ICollection<string> collection = new Collection<string>(testCollection);
+
+            ShouldNotThrow(
+                () => Ensure.Collection.HasAllNotNullItems(collection, ParamName),
+                () => EnsureArg.HasAllNotNullItems(collection, ParamName),
+                () => Ensure.That(collection, ParamName).HasAllNotNullItems());
+        }
+
+        [Fact]
+        public void HasAllNotNullItems_WhenNullIReadOnlyCollection_ThrowsArgumentNullException()
+        {
+            var nullCollection = null as IReadOnlyCollection<string>;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.HasAllNotNullItems(nullCollection, ParamName),
+                () => EnsureArg.HasAllNotNullItems(nullCollection, ParamName),
+                () => Ensure.That(nullCollection, ParamName).HasAllNotNullItems());
+        }
+
+        [Fact]
+        public void HasAllNotNullItems_WhenEmptyIReadOnlyCollection_ThrowsArgumentException()
+        {
+            IReadOnlyCollection<string> emptyCollection = new List<string>();
+
+            AssertIsEmptyCollection(
+                () => Ensure.Collection.HasAllNotNullItems(emptyCollection, ParamName),
+                () => EnsureArg.HasAllNotNullItems(emptyCollection, ParamName),
+                () => Ensure.That(emptyCollection, ParamName).HasAllNotNullItems());
+        }
+
+        [Theory]
+        [ClassData(typeof(WithNullItemsCollection))]
+        public void HasAllNotNullItems_WhenWithNullItemIReadOnlyCollection_ThrowsArgumentException(string[] testCollection)
+        {
+            IReadOnlyCollection<string> collectionWithNullItem = new List<string>(testCollection);
+
+            AssertHasNullItemsCollection(
+                () => Ensure.Collection.HasAllNotNullItems(collectionWithNullItem, ParamName),
+                () => EnsureArg.HasAllNotNullItems(collectionWithNullItem, ParamName),
+                () => Ensure.That(collectionWithNullItem, ParamName).HasAllNotNullItems());
+        }
+
+        [Theory]
+        [ClassData(typeof(WithoutNullItemsCollection))]
+        public void HasAllNotNullItems_WhenNonWithNullItemIReadOnlyCollection_ShouldNotThrow(string[] testCollection)
+        {
+            IReadOnlyCollection<string> collection = new List<string>(testCollection);
+
+            ShouldNotThrow(
+                () => Ensure.Collection.HasAllNotNullItems(collection, ParamName),
+                () => EnsureArg.HasAllNotNullItems(collection, ParamName),
+                () => Ensure.That(collection, ParamName).HasAllNotNullItems());
+        }
+
+        [Fact]
+        public void HasAllNotNullItems_WhenNullIReadOnlyList_ThrowsArgumentNullException()
+        {
+            var nullCollection = null as IReadOnlyList<string>;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.HasAllNotNullItems(nullCollection, ParamName),
+                () => EnsureArg.HasAllNotNullItems(nullCollection, ParamName),
+                () => Ensure.That(nullCollection, ParamName).HasAllNotNullItems());
+        }
+
+        [Fact]
+        public void HasAllNotNullItems_WhenEmptyIReadOnlyList_ThrowsArgumentException()
+        {
+            IReadOnlyList<string> emptyCollection = new List<string>();
+
+            AssertIsEmptyCollection(
+                () => Ensure.Collection.HasAllNotNullItems(emptyCollection, ParamName),
+                () => EnsureArg.HasAllNotNullItems(emptyCollection, ParamName),
+                () => Ensure.That(emptyCollection, ParamName).HasAllNotNullItems());
+        }
+
+        [Theory]
+        [ClassData(typeof(WithNullItemsCollection))]
+        public void HasAllNotNullItems_WhenWithNullItemIReadOnlyList_ThrowsArgumentException(string[] testCollection)
+        {
+            IReadOnlyList<string> collectionWithNullItem = new List<string>(testCollection);
+
+            AssertHasNullItemsCollection(
+                () => Ensure.Collection.HasAllNotNullItems(collectionWithNullItem, ParamName),
+                () => EnsureArg.HasAllNotNullItems(collectionWithNullItem, ParamName),
+                () => Ensure.That(collectionWithNullItem, ParamName).HasAllNotNullItems());
+        }
+
+        [Theory]
+        [ClassData(typeof(WithoutNullItemsCollection))]
+        public void HasAllNotNullItems_WhenNonWithNullItemIReadOnlyList_ShouldNotThrow(string[] testCollection)
+        {
+            IReadOnlyList<string> collection = new List<string>(testCollection);
+
+            ShouldNotThrow(
+                () => Ensure.Collection.HasAllNotNullItems(collection, ParamName),
+                () => EnsureArg.HasAllNotNullItems(collection, ParamName),
+                () => Ensure.That(collection, ParamName).HasAllNotNullItems());
+        }
+
+        [Fact]
+        public void HasAllNotNullItems_WhenNullISet_ThrowsArgumentNullException()
+        {
+            var nullCollection = null as ISet<string>;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.HasAllNotNullItems(nullCollection, ParamName),
+                () => EnsureArg.HasAllNotNullItems(nullCollection, ParamName),
+                () => Ensure.That(nullCollection, ParamName).HasAllNotNullItems());
+        }
+
+        [Fact]
+        public void HasAllNotNullItems_WhenEmptyISet_ThrowsArgumentException()
+        {
+            ISet<string> emptyCollection = new HashSet<string>();
+
+            AssertIsEmptyCollection(
+                () => Ensure.Collection.HasAllNotNullItems(emptyCollection, ParamName),
+                () => EnsureArg.HasAllNotNullItems(emptyCollection, ParamName),
+                () => Ensure.That(emptyCollection, ParamName).HasAllNotNullItems());
+        }
+
+        [Theory]
+        [ClassData(typeof(WithNullItemsCollection))]
+        public void HasAllNotNullItems_WhenWithNullItemISet_ThrowsArgumentException(string[] testCollection)
+        {
+            ISet<string> collectionWithNullItem = new HashSet<string>(testCollection);
+
+            AssertHasNullItemsCollection(
+                () => Ensure.Collection.HasAllNotNullItems(collectionWithNullItem, ParamName),
+                () => EnsureArg.HasAllNotNullItems(collectionWithNullItem, ParamName),
+                () => Ensure.That(collectionWithNullItem, ParamName).HasAllNotNullItems());
+        }
+
+        [Theory]
+        [ClassData(typeof(WithoutNullItemsCollection))]
+        public void HasAllNotNullItems_WhenNonWithNullItemISet_ShouldNotThrow(string[] testCollection)
+        {
+            ISet<string> collection = new HashSet<string>(testCollection);
+
+            ShouldNotThrow(
+                () => Ensure.Collection.HasAllNotNullItems(collection, ParamName),
+                () => EnsureArg.HasAllNotNullItems(collection, ParamName),
+                () => Ensure.That(collection, ParamName).HasAllNotNullItems());
+        }
+
+        [Fact]
+        public void HasAllNotNullItems_WhenNullArray_ThrowsArgumentNullException()
+        {
+            var nullCollection = null as string[];
+
+            AssertIsNotNull(
+                () => Ensure.Collection.HasAllNotNullItems(nullCollection, ParamName),
+                () => EnsureArg.HasAllNotNullItems(nullCollection, ParamName),
+                () => Ensure.That(nullCollection, ParamName).HasAllNotNullItems());
+        }
+
+        [Fact]
+        public void HasAllNotNullItems_WhenEmptyArray_ThrowsArgumentException()
+        {
+            string[] emptyCollection = [];
+
+            AssertIsEmptyCollection(
+                () => Ensure.Collection.HasAllNotNullItems(emptyCollection, ParamName),
+                () => EnsureArg.HasAllNotNullItems(emptyCollection, ParamName),
+                () => Ensure.That(emptyCollection, ParamName).HasAllNotNullItems());
+        }
+
+        [Theory]
+        [ClassData(typeof(WithNullItemsCollection))]
+        public void HasAllNotNullItems_WhenWithNullItemArray_ThrowsArgumentException(string[] testCollection)
+        {
+            var collectionWithNullItem = testCollection.ToArray();
+
+            AssertHasNullItemsCollection(
+                () => Ensure.Collection.HasAllNotNullItems(collectionWithNullItem, ParamName),
+                () => EnsureArg.HasAllNotNullItems(collectionWithNullItem, ParamName),
+                () => Ensure.That(collectionWithNullItem, ParamName).HasAllNotNullItems());
+        }
+
+        [Theory]
+        [ClassData(typeof(WithoutNullItemsCollection))]
+        public void HasAllNotNullItems_WhenNonWithNullItemArray_ShouldNotThrow(string[] testCollection)
+        {
+            var collection = testCollection.ToArray();
+
+            ShouldNotThrow(
+                () => Ensure.Collection.HasAllNotNullItems(collection, ParamName),
+                () => EnsureArg.HasAllNotNullItems(collection, ParamName),
+                () => Ensure.That(collection, ParamName).HasAllNotNullItems());
+        }
+
+        [Fact]
+        public void HasAllNotNullItems_WhenNullIList_ThrowsArgumentNullException()
+        {
+            var nullCollection = null as IList<string>;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.HasAllNotNullItems(nullCollection, ParamName),
+                () => EnsureArg.HasAllNotNullItems(nullCollection, ParamName),
+                () => Ensure.That(nullCollection, ParamName).HasAllNotNullItems());
+        }
+
+        [Fact]
+        public void HasAllNotNullItems_WhenEmptyIList_ThrowsArgumentException()
+        {
+            IList<string> emptyCollection = new List<string>();
+
+            AssertIsEmptyCollection(
+                () => Ensure.Collection.HasAllNotNullItems(emptyCollection, ParamName),
+                () => EnsureArg.HasAllNotNullItems(emptyCollection, ParamName),
+                () => Ensure.That(emptyCollection, ParamName).HasAllNotNullItems());
+        }
+
+        [Theory]
+        [ClassData(typeof(WithNullItemsCollection))]
+        public void HasAllNotNullItems_WhenWithNullItemIList_ThrowsArgumentException(string[] testCollection)
+        {
+            IList<string> collectionWithNullItem = new List<string>(testCollection);
+
+            AssertHasNullItemsCollection(
+                () => Ensure.Collection.HasAllNotNullItems(collectionWithNullItem, ParamName),
+                () => EnsureArg.HasAllNotNullItems(collectionWithNullItem, ParamName),
+                () => Ensure.That(collectionWithNullItem, ParamName).HasAllNotNullItems());
+        }
+
+        [Theory]
+        [ClassData(typeof(WithoutNullItemsCollection))]
+        public void HasAllNotNullItems_WhenNonWithNullItemIList_ShouldNotThrow(string[] testCollection)
+        {
+            IList<string> collection = new List<string>(testCollection);
+
+            ShouldNotThrow(
+                () => Ensure.Collection.HasAllNotNullItems(collection, ParamName),
+                () => EnsureArg.HasAllNotNullItems(collection, ParamName),
+                () => Ensure.That(collection, ParamName).HasAllNotNullItems());
+        }
+
+        [Fact]
+        public void HasAllNotNullItems_WhenNullCollection_ThrowsArgumentNullException()
+        {
+            var nullCollection = null as Collection<string>;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.HasAllNotNullItems(nullCollection, ParamName),
+                () => EnsureArg.HasAllNotNullItems(nullCollection, ParamName),
+                () => Ensure.That(nullCollection, ParamName).HasAllNotNullItems());
+        }
+
+        [Fact]
+        public void HasAllNotNullItems_WhenEmptyCollection_ThrowsArgumentException()
+        {
+            var emptyCollection = new Collection<string>();
+
+            AssertIsEmptyCollection(
+                () => Ensure.Collection.HasAllNotNullItems(emptyCollection, ParamName),
+                () => EnsureArg.HasAllNotNullItems(emptyCollection, ParamName),
+                () => Ensure.That(emptyCollection, ParamName).HasAllNotNullItems());
+        }
+
+        [Theory]
+        [ClassData(typeof(WithNullItemsCollection))]
+        public void HasAllNotNullItems_WhenWithNullItemCollection_ThrowsArgumentException(string[] testCollection)
+        {
+            var collectionWithNullItem = new Collection<string>(testCollection);
+
+            AssertHasNullItemsCollection(
+                () => Ensure.Collection.HasAllNotNullItems(collectionWithNullItem, ParamName),
+                () => EnsureArg.HasAllNotNullItems(collectionWithNullItem, ParamName),
+                () => Ensure.That(collectionWithNullItem, ParamName).HasAllNotNullItems());
+        }
+
+        [Theory]
+        [ClassData(typeof(WithoutNullItemsCollection))]
+        public void HasAllNotNullItems_WhenNonWithNullItemCollection_ShouldNotThrow(string[] testCollection)
+        {
+            var collection = new Collection<string>(testCollection);
+
+            ShouldNotThrow(
+                () => Ensure.Collection.HasAllNotNullItems(collection, ParamName),
+                () => EnsureArg.HasAllNotNullItems(collection, ParamName),
+                () => Ensure.That(collection, ParamName).HasAllNotNullItems());
+        }
+
+        [Fact]
+        public void HasAllNotNullItems_WhenNullList_ThrowsArgumentNullException()
+        {
+            var nullCollection = null as List<string>;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.HasAllNotNullItems(nullCollection, ParamName),
+                () => EnsureArg.HasAllNotNullItems(nullCollection, ParamName),
+                () => Ensure.That(nullCollection, ParamName).HasAllNotNullItems());
+        }
+
+        [Fact]
+        public void HasAllNotNullItems_WhenEmptyList_ThrowsArgumentException()
+        {
+            var emptyCollection = new List<string>();
+
+            AssertIsEmptyCollection(
+                () => Ensure.Collection.HasAllNotNullItems(emptyCollection, ParamName),
+                () => EnsureArg.HasAllNotNullItems(emptyCollection, ParamName),
+                () => Ensure.That(emptyCollection, ParamName).HasAllNotNullItems());
+        }
+
+        [Theory]
+        [ClassData(typeof(WithNullItemsCollection))]
+        public void HasAllNotNullItems_WhenWithNullItemList_ThrowsArgumentException(string[] testCollection)
+        {
+            var collectionWithNullItem = new List<string>(testCollection);
+
+            AssertHasNullItemsCollection(
+                () => Ensure.Collection.HasAllNotNullItems(collectionWithNullItem, ParamName),
+                () => EnsureArg.HasAllNotNullItems(collectionWithNullItem, ParamName),
+                () => Ensure.That(collectionWithNullItem, ParamName).HasAllNotNullItems());
+        }
+
+        [Theory]
+        [ClassData(typeof(WithoutNullItemsCollection))]
+        public void HasAllNotNullItems_WhenNonWithNullItemList_ShouldNotThrow(string[] testCollection)
+        {
+            var collection = new List<string>(testCollection);
+
+            ShouldNotThrow(
+                () => Ensure.Collection.HasAllNotNullItems(collection, ParamName),
+                () => EnsureArg.HasAllNotNullItems(collection, ParamName),
+                () => Ensure.That(collection, ParamName).HasAllNotNullItems());
+        }
+
+        [Fact]
+        public void HasAllNotNullItems_WhenNullHashSet_ThrowsArgumentNullException()
+        {
+            var nullCollection = null as HashSet<string>;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.HasAllNotNullItems(nullCollection, ParamName),
+                () => EnsureArg.HasAllNotNullItems(nullCollection, ParamName),
+                () => Ensure.That(nullCollection, ParamName).HasAllNotNullItems());
+        }
+
+        [Fact]
+        public void HasAllNotNullItems_WhenEmptyHashSet_ThrowsArgumentException()
+        {
+            var emptyCollection = new HashSet<string>();
+
+            AssertIsEmptyCollection(
+                () => Ensure.Collection.HasAllNotNullItems(emptyCollection, ParamName),
+                () => EnsureArg.HasAllNotNullItems(emptyCollection, ParamName),
+                () => Ensure.That(emptyCollection, ParamName).HasAllNotNullItems());
+        }
+
+        [Theory]
+        [ClassData(typeof(WithNullItemsCollection))]
+        public void HasAllNotNullItems_WhenWithNullItemHashSet_ThrowsArgumentException(string[] testCollection)
+        {
+            var collectionWithNullItem = new HashSet<string>(testCollection);
+
+            AssertHasNullItemsCollection(
+                () => Ensure.Collection.HasAllNotNullItems(collectionWithNullItem, ParamName),
+                () => EnsureArg.HasAllNotNullItems(collectionWithNullItem, ParamName),
+                () => Ensure.That(collectionWithNullItem, ParamName).HasAllNotNullItems());
+        }
+
+        [Theory]
+        [ClassData(typeof(WithoutNullItemsCollection))]
+        public void HasAllNotNullItems_WhenNonWithNullItemHashSet_ShouldNotThrow(string[] testCollection)
+        {
+            var collection = new HashSet<string>(testCollection);
+
+            ShouldNotThrow(
+                () => Ensure.Collection.HasAllNotNullItems(collection, ParamName),
+                () => EnsureArg.HasAllNotNullItems(collection, ParamName),
+                () => Ensure.That(collection, ParamName).HasAllNotNullItems());
+        }
+
+        [Fact]
+        public void HasAllNotDefaultItems_WhenDefaultICollection_ThrowsArgumentDefaultException()
+        {
+            var nullCollection = null as ICollection<Guid>;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.HasAllNotDefaultItems(nullCollection, ParamName),
+                () => EnsureArg.HasAllNotDefaultItems(nullCollection, ParamName),
+                () => Ensure.That(nullCollection, ParamName).HasAllNotDefaultItems());
+        }
+
+        [Fact]
+        public void HasAllNotDefaultItems_WhenEmptyICollection_ThrowsArgumentException()
+        {
+            ICollection<Guid> emptyCollection = new Collection<Guid>();
+
+            AssertIsEmptyCollection(
+                () => Ensure.Collection.HasAllNotDefaultItems(emptyCollection, ParamName),
+                () => EnsureArg.HasAllNotDefaultItems(emptyCollection, ParamName),
+                () => Ensure.That(emptyCollection, ParamName).HasAllNotDefaultItems());
+        }
+
+        [Theory]
+        [ClassData(typeof(WithDefaultItemsCollection))]
+        public void HasAllNotDefaultItems_WhenWithDefaultItemICollection_ThrowsArgumentException(Guid[] testCollection)
+        {
+            ICollection<Guid> collectionWithDefaultItem = new Collection<Guid>(testCollection);
+
+            AssertHasDefaultItemsCollection(
+                () => Ensure.Collection.HasAllNotDefaultItems(collectionWithDefaultItem, ParamName),
+                () => EnsureArg.HasAllNotDefaultItems(collectionWithDefaultItem, ParamName),
+                () => Ensure.That(collectionWithDefaultItem, ParamName).HasAllNotDefaultItems());
+        }
+
+        [Theory]
+        [ClassData(typeof(WithoutDefaultItemsCollection))]
+        public void HasAllNotDefaultItems_WhenNonWithDefaultItemICollection_ShouldNotThrow(Guid[] testCollection)
+        {
+            ICollection<Guid> collection = new Collection<Guid>(testCollection);
+
+            ShouldNotThrow(
+                () => Ensure.Collection.HasAllNotDefaultItems(collection, ParamName),
+                () => EnsureArg.HasAllNotDefaultItems(collection, ParamName),
+                () => Ensure.That(collection, ParamName).HasAllNotDefaultItems());
+        }
+
+        [Fact]
+        public void HasAllNotDefaultItems_WhenDefaultIReadOnlyCollection_ThrowsArgumentDefaultException()
+        {
+            var nullCollection = null as IReadOnlyCollection<Guid>;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.HasAllNotDefaultItems(nullCollection, ParamName),
+                () => EnsureArg.HasAllNotDefaultItems(nullCollection, ParamName),
+                () => Ensure.That(nullCollection, ParamName).HasAllNotDefaultItems());
+        }
+
+        [Fact]
+        public void HasAllNotDefaultItems_WhenEmptyIReadOnlyCollection_ThrowsArgumentException()
+        {
+            IReadOnlyCollection<Guid> emptyCollection = new List<Guid>();
+
+            AssertIsEmptyCollection(
+                () => Ensure.Collection.HasAllNotDefaultItems(emptyCollection, ParamName),
+                () => EnsureArg.HasAllNotDefaultItems(emptyCollection, ParamName),
+                () => Ensure.That(emptyCollection, ParamName).HasAllNotDefaultItems());
+        }
+
+        [Theory]
+        [ClassData(typeof(WithDefaultItemsCollection))]
+        public void HasAllNotDefaultItems_WhenWithDefaultItemIReadOnlyCollection_ThrowsArgumentException(Guid[] testCollection)
+        {
+            IReadOnlyCollection<Guid> collectionWithDefaultItem = new List<Guid>(testCollection);
+
+            AssertHasDefaultItemsCollection(
+                () => Ensure.Collection.HasAllNotDefaultItems(collectionWithDefaultItem, ParamName),
+                () => EnsureArg.HasAllNotDefaultItems(collectionWithDefaultItem, ParamName),
+                () => Ensure.That(collectionWithDefaultItem, ParamName).HasAllNotDefaultItems());
+        }
+
+        [Theory]
+        [ClassData(typeof(WithoutDefaultItemsCollection))]
+        public void HasAllNotDefaultItems_WhenNonWithDefaultItemIReadOnlyCollection_ShouldNotThrow(Guid[] testCollection)
+        {
+            IReadOnlyCollection<Guid> collection = new List<Guid>(testCollection);
+
+            ShouldNotThrow(
+                () => Ensure.Collection.HasAllNotDefaultItems(collection, ParamName),
+                () => EnsureArg.HasAllNotDefaultItems(collection, ParamName),
+                () => Ensure.That(collection, ParamName).HasAllNotDefaultItems());
+        }
+
+        [Fact]
+        public void HasAllNotDefaultItems_WhenDefaultIReadOnlyList_ThrowsArgumentDefaultException()
+        {
+            var nullCollection = null as IReadOnlyList<Guid>;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.HasAllNotDefaultItems(nullCollection, ParamName),
+                () => EnsureArg.HasAllNotDefaultItems(nullCollection, ParamName),
+                () => Ensure.That(nullCollection, ParamName).HasAllNotDefaultItems());
+        }
+
+        [Fact]
+        public void HasAllNotDefaultItems_WhenEmptyIReadOnlyList_ThrowsArgumentException()
+        {
+            IReadOnlyList<Guid> emptyCollection = new List<Guid>();
+
+            AssertIsEmptyCollection(
+                () => Ensure.Collection.HasAllNotDefaultItems(emptyCollection, ParamName),
+                () => EnsureArg.HasAllNotDefaultItems(emptyCollection, ParamName),
+                () => Ensure.That(emptyCollection, ParamName).HasAllNotDefaultItems());
+        }
+
+        [Theory]
+        [ClassData(typeof(WithDefaultItemsCollection))]
+        public void HasAllNotDefaultItems_WhenWithDefaultItemIReadOnlyList_ThrowsArgumentException(Guid[] testCollection)
+        {
+            IReadOnlyList<Guid> collectionWithDefaultItem = new List<Guid>(testCollection);
+
+            AssertHasDefaultItemsCollection(
+                () => Ensure.Collection.HasAllNotDefaultItems(collectionWithDefaultItem, ParamName),
+                () => EnsureArg.HasAllNotDefaultItems(collectionWithDefaultItem, ParamName),
+                () => Ensure.That(collectionWithDefaultItem, ParamName).HasAllNotDefaultItems());
+        }
+
+        [Theory]
+        [ClassData(typeof(WithoutDefaultItemsCollection))]
+        public void HasAllNotDefaultItems_WhenNonWithDefaultItemIReadOnlyList_ShouldNotThrow(Guid[] testCollection)
+        {
+            IReadOnlyList<Guid> collection = new List<Guid>(testCollection);
+
+            ShouldNotThrow(
+                () => Ensure.Collection.HasAllNotDefaultItems(collection, ParamName),
+                () => EnsureArg.HasAllNotDefaultItems(collection, ParamName),
+                () => Ensure.That(collection, ParamName).HasAllNotDefaultItems());
+        }
+
+        [Fact]
+        public void HasAllNotDefaultItems_WhenDefaultISet_ThrowsArgumentDefaultException()
+        {
+            var nullCollection = null as ISet<Guid>;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.HasAllNotDefaultItems(nullCollection, ParamName),
+                () => EnsureArg.HasAllNotDefaultItems(nullCollection, ParamName),
+                () => Ensure.That(nullCollection, ParamName).HasAllNotDefaultItems());
+        }
+
+        [Fact]
+        public void HasAllNotDefaultItems_WhenEmptyISet_ThrowsArgumentException()
+        {
+            ISet<Guid> emptyCollection = new HashSet<Guid>();
+
+            AssertIsEmptyCollection(
+                () => Ensure.Collection.HasAllNotDefaultItems(emptyCollection, ParamName),
+                () => EnsureArg.HasAllNotDefaultItems(emptyCollection, ParamName),
+                () => Ensure.That(emptyCollection, ParamName).HasAllNotDefaultItems());
+        }
+
+        [Theory]
+        [ClassData(typeof(WithDefaultItemsCollection))]
+        public void HasAllNotDefaultItems_WhenWithDefaultItemISet_ThrowsArgumentException(Guid[] testCollection)
+        {
+            ISet<Guid> collectionWithDefaultItem = new HashSet<Guid>(testCollection);
+
+            AssertHasDefaultItemsCollection(
+                () => Ensure.Collection.HasAllNotDefaultItems(collectionWithDefaultItem, ParamName),
+                () => EnsureArg.HasAllNotDefaultItems(collectionWithDefaultItem, ParamName),
+                () => Ensure.That(collectionWithDefaultItem, ParamName).HasAllNotDefaultItems());
+        }
+
+        [Theory]
+        [ClassData(typeof(WithoutDefaultItemsCollection))]
+        public void HasAllNotDefaultItems_WhenNonWithDefaultItemISet_ShouldNotThrow(Guid[] testCollection)
+        {
+            ISet<Guid> collection = new HashSet<Guid>(testCollection);
+
+            ShouldNotThrow(
+                () => Ensure.Collection.HasAllNotDefaultItems(collection, ParamName),
+                () => EnsureArg.HasAllNotDefaultItems(collection, ParamName),
+                () => Ensure.That(collection, ParamName).HasAllNotDefaultItems());
+        }
+
+        [Fact]
+        public void HasAllNotDefaultItems_WhenDefaultArray_ThrowsArgumentDefaultException()
+        {
+            var nullCollection = null as Guid[];
+
+            AssertIsNotNull(
+                () => Ensure.Collection.HasAllNotDefaultItems(nullCollection, ParamName),
+                () => EnsureArg.HasAllNotDefaultItems(nullCollection, ParamName),
+                () => Ensure.That(nullCollection, ParamName).HasAllNotDefaultItems());
+        }
+
+        [Fact]
+        public void HasAllNotDefaultItems_WhenEmptyArray_ThrowsArgumentException()
+        {
+            Guid[] emptyCollection = [];
+
+            AssertIsEmptyCollection(
+                () => Ensure.Collection.HasAllNotDefaultItems(emptyCollection, ParamName),
+                () => EnsureArg.HasAllNotDefaultItems(emptyCollection, ParamName),
+                () => Ensure.That(emptyCollection, ParamName).HasAllNotDefaultItems());
+        }
+
+        [Theory]
+        [ClassData(typeof(WithDefaultItemsCollection))]
+        public void HasAllNotDefaultItems_WhenWithDefaultItemArray_ThrowsArgumentException(Guid[] testCollection)
+        {
+            var collectionWithDefaultItem = testCollection.ToArray();
+
+            AssertHasDefaultItemsCollection(
+                () => Ensure.Collection.HasAllNotDefaultItems(collectionWithDefaultItem, ParamName),
+                () => EnsureArg.HasAllNotDefaultItems(collectionWithDefaultItem, ParamName),
+                () => Ensure.That(collectionWithDefaultItem, ParamName).HasAllNotDefaultItems());
+        }
+
+        [Theory]
+        [ClassData(typeof(WithoutDefaultItemsCollection))]
+        public void HasAllNotDefaultItems_WhenNonWithDefaultItemArray_ShouldNotThrow(Guid[] testCollection)
+        {
+            var collection = testCollection.ToArray();
+
+            ShouldNotThrow(
+                () => Ensure.Collection.HasAllNotDefaultItems(collection, ParamName),
+                () => EnsureArg.HasAllNotDefaultItems(collection, ParamName),
+                () => Ensure.That(collection, ParamName).HasAllNotDefaultItems());
+        }
+
+        [Fact]
+        public void HasAllNotDefaultItems_WhenDefaultIList_ThrowsArgumentDefaultException()
+        {
+            var nullCollection = null as IList<Guid>;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.HasAllNotDefaultItems(nullCollection, ParamName),
+                () => EnsureArg.HasAllNotDefaultItems(nullCollection, ParamName),
+                () => Ensure.That(nullCollection, ParamName).HasAllNotDefaultItems());
+        }
+
+        [Fact]
+        public void HasAllNotDefaultItems_WhenEmptyIList_ThrowsArgumentException()
+        {
+            IList<Guid> emptyCollection = new List<Guid>();
+
+            AssertIsEmptyCollection(
+                () => Ensure.Collection.HasAllNotDefaultItems(emptyCollection, ParamName),
+                () => EnsureArg.HasAllNotDefaultItems(emptyCollection, ParamName),
+                () => Ensure.That(emptyCollection, ParamName).HasAllNotDefaultItems());
+        }
+
+        [Theory]
+        [ClassData(typeof(WithDefaultItemsCollection))]
+        public void HasAllNotDefaultItems_WhenWithDefaultItemIList_ThrowsArgumentException(Guid[] testCollection)
+        {
+            IList<Guid> collectionWithDefaultItem = new List<Guid>(testCollection);
+
+            AssertHasDefaultItemsCollection(
+                () => Ensure.Collection.HasAllNotDefaultItems(collectionWithDefaultItem, ParamName),
+                () => EnsureArg.HasAllNotDefaultItems(collectionWithDefaultItem, ParamName),
+                () => Ensure.That(collectionWithDefaultItem, ParamName).HasAllNotDefaultItems());
+        }
+
+        [Theory]
+        [ClassData(typeof(WithoutDefaultItemsCollection))]
+        public void HasAllNotDefaultItems_WhenNonWithDefaultItemIList_ShouldNotThrow(Guid[] testCollection)
+        {
+            IList<Guid> collection = new List<Guid>(testCollection);
+
+            ShouldNotThrow(
+                () => Ensure.Collection.HasAllNotDefaultItems(collection, ParamName),
+                () => EnsureArg.HasAllNotDefaultItems(collection, ParamName),
+                () => Ensure.That(collection, ParamName).HasAllNotDefaultItems());
+        }
+
+        [Fact]
+        public void HasAllNotDefaultItems_WhenDefaultCollection_ThrowsArgumentDefaultException()
+        {
+            var nullCollection = null as Collection<Guid>;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.HasAllNotDefaultItems(nullCollection, ParamName),
+                () => EnsureArg.HasAllNotDefaultItems(nullCollection, ParamName),
+                () => Ensure.That(nullCollection, ParamName).HasAllNotDefaultItems());
+        }
+
+        [Fact]
+        public void HasAllNotDefaultItems_WhenEmptyCollection_ThrowsArgumentException()
+        {
+            var emptyCollection = new Collection<Guid>();
+
+            AssertIsEmptyCollection(
+                () => Ensure.Collection.HasAllNotDefaultItems(emptyCollection, ParamName),
+                () => EnsureArg.HasAllNotDefaultItems(emptyCollection, ParamName),
+                () => Ensure.That(emptyCollection, ParamName).HasAllNotDefaultItems());
+        }
+
+        [Theory]
+        [ClassData(typeof(WithDefaultItemsCollection))]
+        public void HasAllNotDefaultItems_WhenWithDefaultItemCollection_ThrowsArgumentException(Guid[] testCollection)
+        {
+            var collectionWithDefaultItem = new Collection<Guid>(testCollection);
+
+            AssertHasDefaultItemsCollection(
+                () => Ensure.Collection.HasAllNotDefaultItems(collectionWithDefaultItem, ParamName),
+                () => EnsureArg.HasAllNotDefaultItems(collectionWithDefaultItem, ParamName),
+                () => Ensure.That(collectionWithDefaultItem, ParamName).HasAllNotDefaultItems());
+        }
+
+        [Theory]
+        [ClassData(typeof(WithoutDefaultItemsCollection))]
+        public void HasAllNotDefaultItems_WhenNonWithDefaultItemCollection_ShouldNotThrow(Guid[] testCollection)
+        {
+            var collection = new Collection<Guid>(testCollection);
+
+            ShouldNotThrow(
+                () => Ensure.Collection.HasAllNotDefaultItems(collection, ParamName),
+                () => EnsureArg.HasAllNotDefaultItems(collection, ParamName),
+                () => Ensure.That(collection, ParamName).HasAllNotDefaultItems());
+        }
+
+        [Fact]
+        public void HasAllNotDefaultItems_WhenDefaultList_ThrowsArgumentDefaultException()
+        {
+            var nullCollection = null as List<Guid>;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.HasAllNotDefaultItems(nullCollection, ParamName),
+                () => EnsureArg.HasAllNotDefaultItems(nullCollection, ParamName),
+                () => Ensure.That(nullCollection, ParamName).HasAllNotDefaultItems());
+        }
+
+        [Fact]
+        public void HasAllNotDefaultItems_WhenEmptyList_ThrowsArgumentException()
+        {
+            var emptyCollection = new List<Guid>();
+
+            AssertIsEmptyCollection(
+                () => Ensure.Collection.HasAllNotDefaultItems(emptyCollection, ParamName),
+                () => EnsureArg.HasAllNotDefaultItems(emptyCollection, ParamName),
+                () => Ensure.That(emptyCollection, ParamName).HasAllNotDefaultItems());
+        }
+
+        [Theory]
+        [ClassData(typeof(WithDefaultItemsCollection))]
+        public void HasAllNotDefaultItems_WhenWithDefaultItemList_ThrowsArgumentException(Guid[] testCollection)
+        {
+            var collectionWithDefaultItem = new List<Guid>(testCollection);
+
+            AssertHasDefaultItemsCollection(
+                () => Ensure.Collection.HasAllNotDefaultItems(collectionWithDefaultItem, ParamName),
+                () => EnsureArg.HasAllNotDefaultItems(collectionWithDefaultItem, ParamName),
+                () => Ensure.That(collectionWithDefaultItem, ParamName).HasAllNotDefaultItems());
+        }
+
+        [Theory]
+        [ClassData(typeof(WithoutDefaultItemsCollection))]
+        public void HasAllNotDefaultItems_WhenNonWithDefaultItemList_ShouldNotThrow(Guid[] testCollection)
+        {
+            var collection = new List<Guid>(testCollection);
+
+            ShouldNotThrow(
+                () => Ensure.Collection.HasAllNotDefaultItems(collection, ParamName),
+                () => EnsureArg.HasAllNotDefaultItems(collection, ParamName),
+                () => Ensure.That(collection, ParamName).HasAllNotDefaultItems());
+        }
+
+        [Fact]
+        public void HasAllNotDefaultItems_WhenDefaultHashSet_ThrowsArgumentDefaultException()
+        {
+            var nullCollection = null as HashSet<Guid>;
+
+            AssertIsNotNull(
+                () => Ensure.Collection.HasAllNotDefaultItems(nullCollection, ParamName),
+                () => EnsureArg.HasAllNotDefaultItems(nullCollection, ParamName),
+                () => Ensure.That(nullCollection, ParamName).HasAllNotDefaultItems());
+        }
+
+        [Fact]
+        public void HasAllNotDefaultItems_WhenEmptyHashSet_ThrowsArgumentException()
+        {
+            var emptyCollection = new HashSet<Guid>();
+
+            AssertIsEmptyCollection(
+                () => Ensure.Collection.HasAllNotDefaultItems(emptyCollection, ParamName),
+                () => EnsureArg.HasAllNotDefaultItems(emptyCollection, ParamName),
+                () => Ensure.That(emptyCollection, ParamName).HasAllNotDefaultItems());
+        }
+
+        [Theory]
+        [ClassData(typeof(WithDefaultItemsCollection))]
+        public void HasAllNotDefaultItems_WhenWithDefaultItemHashSet_ThrowsArgumentException(Guid[] testCollection)
+        {
+            var collectionWithDefaultItem = new HashSet<Guid>(testCollection);
+
+            AssertHasDefaultItemsCollection(
+                () => Ensure.Collection.HasAllNotDefaultItems(collectionWithDefaultItem, ParamName),
+                () => EnsureArg.HasAllNotDefaultItems(collectionWithDefaultItem, ParamName),
+                () => Ensure.That(collectionWithDefaultItem, ParamName).HasAllNotDefaultItems());
+        }
+
+        [Theory]
+        [ClassData(typeof(WithoutDefaultItemsCollection))]
+        public void HasAllNotDefaultItems_WhenNonWithDefaultItemHashSet_ShouldNotThrow(Guid[] testCollection)
+        {
+            var collection = new HashSet<Guid>(testCollection);
+
+            ShouldNotThrow(
+                () => Ensure.Collection.HasAllNotDefaultItems(collection, ParamName),
+                () => EnsureArg.HasAllNotDefaultItems(collection, ParamName),
+                () => Ensure.That(collection, ParamName).HasAllNotDefaultItems());
+        }
+
         private void AssertIsEmptyCollection(params Action[] actions) => ShouldThrow<ArgumentException>(ExceptionMessages.Collections_HasItemsFailed, actions);
+
+        private void AssertHasNullItemsCollection(params Action[] actions) => ShouldThrow<ArgumentException>(ExceptionMessages.Collections_HasAllNotNullItems_Failed, actions);
+
+        private void AssertHasDefaultItemsCollection(params Action[] actions) => ShouldThrow<ArgumentException>(ExceptionMessages.Collections_HasAllNotDefaultItems_Failed, actions);
 
         private void AssertIsNotNull(params Action[] actions) => ShouldThrow<ArgumentNullException>(ExceptionMessages.Common_IsNotNull_Failed, actions);
 
@@ -820,5 +1653,47 @@ namespace UnitTests
             => ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_ContainsKey_Failed, expectedKey), actions);
 
         private void AssertAnyPredicateYieldedNone(params Action[] actions) => ShouldThrow<ArgumentException>(ExceptionMessages.Collections_Any_Failed, actions);
+
+        public class WithNullItemsCollection : TheoryData<string[]>
+        {
+            public WithNullItemsCollection()
+            {
+                Add([null]);
+                Add([null, null]);
+                Add(["not null", null, "not null"]);
+                Add(["not null", null, null]);
+            }
+        }
+
+        public class WithoutNullItemsCollection : TheoryData<string[]>
+        {
+            public WithoutNullItemsCollection()
+            {
+                Add(["not null"]);
+                Add(["not null", "not null"]);
+                Add(["not null", "not null", "not null"]);
+            }
+        }
+
+        public class WithDefaultItemsCollection : TheoryData<Guid[]>
+        {
+            public WithDefaultItemsCollection()
+            {
+                Add([Guid.Empty]);
+                Add([Guid.Empty, Guid.Empty]);
+                Add([Guid.NewGuid(), Guid.Empty, Guid.NewGuid()]);
+                Add([Guid.NewGuid(), Guid.Empty, Guid.Empty]);
+            }
+        }
+
+        public class WithoutDefaultItemsCollection : TheoryData<Guid[]>
+        {
+            public WithoutDefaultItemsCollection()
+            {
+                Add([Guid.NewGuid()]);
+                Add([Guid.NewGuid(), Guid.NewGuid()]);
+                Add([Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid()]);
+            }
+        }
     }
 }

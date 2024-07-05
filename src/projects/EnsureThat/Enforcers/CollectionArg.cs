@@ -406,5 +406,312 @@ namespace EnsureThat.Enforcers
 
             return value;
         }
+
+        [return: NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public ICollection<T> HasAllNotNullItems<T>([ValidatedNotNull, NotNull]ICollection<T> value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null) where T : class
+        {
+            Ensure.Any.IsNotNull(value, paramName);
+
+            Ensure.Collection.HasItems(value, paramName);
+
+            if (value.Any(item => item is null))
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    ExceptionMessages.Collections_HasAllNotNullItems_Failed,
+                    paramName,
+                    optsFn);
+
+            return value;
+        }
+
+        [return: NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public IReadOnlyCollection<T> HasAllNotNullItems<T>([ValidatedNotNull, NotNull]IReadOnlyCollection<T> value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null) where T : class
+        {
+            Ensure.Any.IsNotNull(value, paramName);
+
+            Ensure.Collection.HasItems(value, paramName);
+
+            if (value.Any(item => item is null))
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    ExceptionMessages.Collections_HasAllNotNullItems_Failed,
+                    paramName,
+                    optsFn);
+
+            return value;
+        }
+
+        [return: NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public IReadOnlyList<T> HasAllNotNullItems<T>([ValidatedNotNull, NotNull]IReadOnlyList<T> value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null) where T : class
+        {
+            Ensure.Any.IsNotNull(value, paramName);
+
+            Ensure.Collection.HasItems(value, paramName);
+
+            if (value.Any(item => item is null))
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    ExceptionMessages.Collections_HasAllNotNullItems_Failed,
+                    paramName,
+                    optsFn);
+
+            return value;
+        }
+
+        [return: NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public ISet<T> HasAllNotNullItems<T>([ValidatedNotNull, NotNull]ISet<T> value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null) where T : class
+        {
+            Ensure.Any.IsNotNull(value, paramName);
+
+            Ensure.Collection.HasItems(value, paramName);
+
+            if (value.Any(item => item is null))
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    ExceptionMessages.Collections_HasAllNotNullItems_Failed,
+                    paramName,
+                    optsFn);
+
+            return value;
+        }
+
+        [return: NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public T[] HasAllNotNullItems<T>([ValidatedNotNull, NotNull]T[] value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null) where T : class
+        {
+            Ensure.Any.IsNotNull(value, paramName);
+
+            Ensure.Collection.HasItems(value, paramName);
+
+            if (value.Any(item => item is null))
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    ExceptionMessages.Collections_HasAllNotNullItems_Failed,
+                    paramName,
+                    optsFn);
+
+            return value;
+        }
+
+        [return: NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public IList<T> HasAllNotNullItems<T>([ValidatedNotNull, NotNull] IList<T> value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null) where T : class
+        {
+            Ensure.Any.IsNotNull(value, paramName);
+
+            Ensure.Collection.HasItems(value, paramName);
+
+            if (value.Any(item => item is null))
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    ExceptionMessages.Collections_HasAllNotNullItems_Failed,
+                    paramName,
+                    optsFn);
+
+            return value;
+        }
+
+        [return: NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public Collection<T> HasAllNotNullItems<T>([ValidatedNotNull, NotNull] Collection<T> value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null) where T : class
+        {
+            Ensure.Any.IsNotNull(value, paramName);
+
+            Ensure.Collection.HasItems(value, paramName);
+
+            if (value.Any(item => item is null))
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    ExceptionMessages.Collections_HasAllNotNullItems_Failed,
+                    paramName,
+                    optsFn);
+
+            return value;
+        }
+
+        [return: NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public List<T> HasAllNotNullItems<T>([ValidatedNotNull, NotNull] List<T> value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null) where T : class
+        {
+            Ensure.Any.IsNotNull(value, paramName);
+
+            Ensure.Collection.HasItems(value, paramName);
+
+            if (value.Any(item => item is null))
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    ExceptionMessages.Collections_HasAllNotNullItems_Failed,
+                    paramName,
+                    optsFn);
+
+            return value;
+        }
+
+        [return: NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public HashSet<T> HasAllNotNullItems<T>([ValidatedNotNull, NotNull] HashSet<T> value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null) where T : class
+        {
+            Ensure.Any.IsNotNull(value, paramName);
+
+            Ensure.Collection.HasItems(value, paramName);
+
+            if (value.Any(item => item is null))
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    ExceptionMessages.Collections_HasAllNotNullItems_Failed,
+                    paramName,
+                    optsFn);
+
+            return value;
+        }
+
+        [return: NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public ICollection<T> HasAllNotDefaultItems<T>([ValidatedNotNull, NotNull]ICollection<T> value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null) where T : struct
+        {
+            Ensure.Any.IsNotNull(value, paramName);
+
+            Ensure.Collection.HasItems(value, paramName);
+
+            if (value.Any(item => default(T).Equals(item)))
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    ExceptionMessages.Collections_HasAllNotDefaultItems_Failed,
+                    paramName,
+                    optsFn);
+
+            return value;
+        }
+
+        [return: NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public IReadOnlyCollection<T> HasAllNotDefaultItems<T>([ValidatedNotNull, NotNull]IReadOnlyCollection<T> value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null) where T : struct
+        {
+            Ensure.Any.IsNotNull(value, paramName);
+
+            Ensure.Collection.HasItems(value, paramName);
+
+            if (value.Any(item => default(T).Equals(item)))
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    ExceptionMessages.Collections_HasAllNotDefaultItems_Failed,
+                    paramName,
+                    optsFn);
+
+            return value;
+        }
+
+
+        [return: NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public IReadOnlyList<T> HasAllNotDefaultItems<T>([ValidatedNotNull, NotNull]IReadOnlyList<T> value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null) where T : struct
+        {
+            Ensure.Any.IsNotNull(value, paramName);
+
+            Ensure.Collection.HasItems(value, paramName);
+
+            if (value.Any(item => default(T).Equals(item)))
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    ExceptionMessages.Collections_HasAllNotDefaultItems_Failed,
+                    paramName,
+                    optsFn);
+
+            return value;
+        }
+
+        [return: NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public ISet<T> HasAllNotDefaultItems<T>([ValidatedNotNull, NotNull]ISet<T> value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null) where T : struct
+        {
+            Ensure.Any.IsNotNull(value, paramName);
+
+            Ensure.Collection.HasItems(value, paramName);
+
+            if (value.Any(item => default(T).Equals(item)))
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    ExceptionMessages.Collections_HasAllNotDefaultItems_Failed,
+                    paramName,
+                    optsFn);
+
+            return value;
+        }
+
+        [return: NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public T[] HasAllNotDefaultItems<T>([ValidatedNotNull, NotNull]T[] value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null) where T : struct
+        {
+            Ensure.Any.IsNotNull(value, paramName);
+
+            Ensure.Collection.HasItems(value, paramName);
+
+            if (value.Any(item => default(T).Equals(item)))
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    ExceptionMessages.Collections_HasAllNotDefaultItems_Failed,
+                    paramName,
+                    optsFn);
+
+            return value;
+        }
+
+        [return: NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public IList<T> HasAllNotDefaultItems<T>([ValidatedNotNull, NotNull] IList<T> value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null) where T : struct
+        {
+            Ensure.Any.IsNotNull(value, paramName);
+
+            Ensure.Collection.HasItems(value, paramName);
+
+            if (value.Any(item => default(T).Equals(item)))
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    ExceptionMessages.Collections_HasAllNotDefaultItems_Failed,
+                    paramName,
+                    optsFn);
+
+            return value;
+        }
+
+        [return: NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public Collection<T> HasAllNotDefaultItems<T>([ValidatedNotNull, NotNull] Collection<T> value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null) where T : struct
+        {
+            Ensure.Any.IsNotNull(value, paramName);
+
+            Ensure.Collection.HasItems(value, paramName);
+
+            if (value.Any(item => default(T).Equals(item)))
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    ExceptionMessages.Collections_HasAllNotDefaultItems_Failed,
+                    paramName,
+                    optsFn);
+
+            return value;
+        }
+
+        [return: NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public List<T> HasAllNotDefaultItems<T>([ValidatedNotNull, NotNull] List<T> value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null) where T : struct
+        {
+            Ensure.Any.IsNotNull(value, paramName);
+
+            Ensure.Collection.HasItems(value, paramName);
+
+            if (value.Any(item => default(T).Equals(item)))
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    ExceptionMessages.Collections_HasAllNotDefaultItems_Failed,
+                    paramName,
+                    optsFn);
+
+            return value;
+        }
+
+        [return: NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public HashSet<T> HasAllNotDefaultItems<T>([ValidatedNotNull, NotNull] HashSet<T> value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null) where T : struct
+        {
+            Ensure.Any.IsNotNull(value, paramName);
+
+            Ensure.Collection.HasItems(value, paramName);
+
+            if (value.Any(item => default(T).Equals(item)))
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    ExceptionMessages.Collections_HasAllNotDefaultItems_Failed,
+                    paramName,
+                    optsFn);
+
+            return value;
+        }
     }
 }

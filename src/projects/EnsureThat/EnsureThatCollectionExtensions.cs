@@ -99,5 +99,59 @@ namespace EnsureThat
 
         public static void HasAny<T>(this in Param<T[]> param, Func<T, bool> predicate)
             => Ensure.Collection.HasAny(param.Value, predicate, param.Name, param.OptsFn);
+
+        public static void HasAllNotNullItems<T>(this in Param<Collection<T>> param) where T : class
+            => Ensure.Collection.HasAllNotNullItems(param.Value, param.Name, param.OptsFn);
+
+        public static void HasAllNotNullItems<T>(this in Param<ICollection<T>> param) where T : class
+            => Ensure.Collection.HasAllNotNullItems(param.Value, param.Name, param.OptsFn);
+
+        public static void HasAllNotNullItems<T>(this in Param<T[]> param) where T : class
+            => Ensure.Collection.HasAllNotNullItems(param.Value, param.Name, param.OptsFn);
+
+        public static void HasAllNotNullItems<T>(this in Param<List<T>> param) where T : class
+            => Ensure.Collection.HasAllNotNullItems(param.Value, param.Name, param.OptsFn);
+
+        public static void HasAllNotNullItems<T>(this in Param<IList<T>> param) where T : class
+            => Ensure.Collection.HasAllNotNullItems(param.Value, param.Name, param.OptsFn);
+
+        public static void HasAllNotNullItems<T>(this in Param<HashSet<T>> param) where T : class
+            => Ensure.Collection.HasAllNotNullItems(param.Value, param.Name, param.OptsFn);
+
+        public static void HasAllNotNullItems<T>(this in Param<ISet<T>> param) where T : class
+            => Ensure.Collection.HasAllNotNullItems(param.Value, param.Name, param.OptsFn);
+
+        public static void HasAllNotNullItems<T>(this in Param<IReadOnlyCollection<T>> param) where T : class
+            => Ensure.Collection.HasAllNotNullItems(param.Value, param.Name, param.OptsFn);
+
+        public static void HasAllNotNullItems<T>(this in Param<IReadOnlyList<T>> param) where T : class
+            => Ensure.Collection.HasAllNotNullItems(param.Value, param.Name, param.OptsFn);
+
+        public static void HasAllNotDefaultItems<T>(this in Param<Collection<T>> param) where T : struct
+            => Ensure.Collection.HasAllNotDefaultItems(param.Value, param.Name, param.OptsFn);
+
+        public static void HasAllNotDefaultItems<T>(this in Param<ICollection<T>> param) where T : struct
+            => Ensure.Collection.HasAllNotDefaultItems(param.Value, param.Name, param.OptsFn);
+
+        public static void HasAllNotDefaultItems<T>(this in Param<T[]> param) where T : struct
+            => Ensure.Collection.HasAllNotDefaultItems(param.Value, param.Name, param.OptsFn);
+
+        public static void HasAllNotDefaultItems<T>(this in Param<List<T>> param) where T : struct
+            => Ensure.Collection.HasAllNotDefaultItems(param.Value, param.Name, param.OptsFn);
+
+        public static void HasAllNotDefaultItems<T>(this in Param<IList<T>> param) where T : struct
+            => Ensure.Collection.HasAllNotDefaultItems(param.Value, param.Name, param.OptsFn);
+
+        public static void HasAllNotDefaultItems<T>(this in Param<HashSet<T>> param) where T : struct
+            => Ensure.Collection.HasAllNotDefaultItems(param.Value, param.Name, param.OptsFn);
+
+        public static void HasAllNotDefaultItems<T>(this in Param<ISet<T>> param) where T : struct
+            => Ensure.Collection.HasAllNotDefaultItems(param.Value, param.Name, param.OptsFn);
+
+        public static void HasAllNotDefaultItems<T>(this in Param<IReadOnlyCollection<T>> param) where T : struct
+            => Ensure.Collection.HasAllNotDefaultItems(param.Value, param.Name, param.OptsFn);
+
+        public static void HasAllNotDefaultItems<T>(this in Param<IReadOnlyList<T>> param) where T : struct
+            => Ensure.Collection.HasAllNotDefaultItems(param.Value, param.Name, param.OptsFn);
     }
 }
