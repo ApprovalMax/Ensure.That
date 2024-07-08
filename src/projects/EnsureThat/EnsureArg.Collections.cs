@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Runtime.CompilerServices;
 using EnsureThat.Annotations;
 using JetBrains.Annotations;
@@ -120,5 +121,95 @@ namespace EnsureThat
         [ContractAnnotation("value:null => halt")]
         public static T[] HasAny<T>([ValidatedNotNull, NotNull]T[] value, Func<T, bool> predicate, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null)
             => Ensure.Collection.HasAny(value, predicate, paramName, optsFn);
+
+        [return: NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public static Collection<T> HasAllNotNullItems<T>([ValidatedNotNull, NotNull]Collection<T> value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null) where T : class
+            => Ensure.Collection.HasAllNotNullItems(value, paramName, optsFn);
+
+        [return: NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public static ICollection<T> HasAllNotNullItems<T>([ValidatedNotNull, NotNull]ICollection<T> value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null) where T : class
+            => Ensure.Collection.HasAllNotNullItems(value, paramName, optsFn);
+
+        [return: NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public static IReadOnlyCollection<T> HasAllNotNullItems<T>([ValidatedNotNull, NotNull]IReadOnlyCollection<T> value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null) where T : class
+            => Ensure.Collection.HasAllNotNullItems(value, paramName, optsFn);
+
+        [return: NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public static IReadOnlyList<T> HasAllNotNullItems<T>([ValidatedNotNull, NotNull]IReadOnlyList<T> value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null) where T : class
+            => Ensure.Collection.HasAllNotNullItems(value, paramName, optsFn);
+
+        [return: NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public static ISet<T> HasAllNotNullItems<T>([ValidatedNotNull, NotNull]ISet<T> value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null) where T : class
+            => Ensure.Collection.HasAllNotNullItems(value, paramName, optsFn);
+
+        [return: NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public static T[] HasAllNotNullItems<T>([ValidatedNotNull, NotNull]T[] value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null) where T : class
+            => Ensure.Collection.HasAllNotNullItems(value, paramName, optsFn);
+
+        [return: NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public static List<T> HasAllNotNullItems<T>([ValidatedNotNull, NotNull]List<T> value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null) where T : class
+            => Ensure.Collection.HasAllNotNullItems(value, paramName, optsFn);
+
+        [return: NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public static IList<T> HasAllNotNullItems<T>([ValidatedNotNull, NotNull] IList<T> value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null) where T : class
+            => Ensure.Collection.HasAllNotNullItems(value, paramName, optsFn);
+
+        [return: NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public static HashSet<T> HasAllNotNullItems<T>([ValidatedNotNull, NotNull] HashSet<T> value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null) where T : class
+            => Ensure.Collection.HasAllNotNullItems(value, paramName, optsFn);
+
+        [return: NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public static Collection<T> HasAllNotDefaultItems<T>([ValidatedNotNull, NotNull]Collection<T> value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null) where T : struct
+            => Ensure.Collection.HasAllNotDefaultItems(value, paramName, optsFn);
+
+        [return: NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public static ICollection<T> HasAllNotDefaultItems<T>([ValidatedNotNull, NotNull]ICollection<T> value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null) where T : struct
+            => Ensure.Collection.HasAllNotDefaultItems(value, paramName, optsFn);
+
+        [return: NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public static IReadOnlyCollection<T> HasAllNotDefaultItems<T>([ValidatedNotNull, NotNull]IReadOnlyCollection<T> value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null) where T : struct
+            => Ensure.Collection.HasAllNotDefaultItems(value, paramName, optsFn);
+
+        [return: NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public static IReadOnlyList<T> HasAllNotDefaultItems<T>([ValidatedNotNull, NotNull]IReadOnlyList<T> value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null) where T : struct
+            => Ensure.Collection.HasAllNotDefaultItems(value, paramName, optsFn);
+
+        [return: NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public static ISet<T> HasAllNotDefaultItems<T>([ValidatedNotNull, NotNull]ISet<T> value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null) where T : struct
+            => Ensure.Collection.HasAllNotDefaultItems(value, paramName, optsFn);
+
+        [return: NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public static T[] HasAllNotDefaultItems<T>([ValidatedNotNull, NotNull]T[] value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null) where T : struct
+            => Ensure.Collection.HasAllNotDefaultItems(value, paramName, optsFn);
+
+        [return: NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public static List<T> HasAllNotDefaultItems<T>([ValidatedNotNull, NotNull]List<T> value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null) where T : struct
+            => Ensure.Collection.HasAllNotDefaultItems(value, paramName, optsFn);
+
+        [return: NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public static IList<T> HasAllNotDefaultItems<T>([ValidatedNotNull, NotNull] IList<T> value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null) where T : struct
+            => Ensure.Collection.HasAllNotDefaultItems(value, paramName, optsFn);
+
+        [return: NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public static HashSet<T> HasAllNotDefaultItems<T>([ValidatedNotNull, NotNull] HashSet<T> value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null, OptsFn optsFn = null) where T : struct
+            => Ensure.Collection.HasAllNotDefaultItems(value, paramName, optsFn);
     }
 }
