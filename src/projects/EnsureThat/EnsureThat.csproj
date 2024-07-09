@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <PackageVersion>0.0.0.104</PackageVersion>
+    <PackageVersion>0.0.0.105</PackageVersion>
     <PackageId>ApprovalMax.Ensure.That</PackageId>
     <AssemblyName>ApprovalMax.Ensure.That</AssemblyName>
     <RootNamespace>Ensure.That</RootNamespace>
